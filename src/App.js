@@ -7,8 +7,7 @@ class App extends React.Component {
       searchText: '',
       users: []
     };
-  callAPI =(searchText) =>{
-    
+  callAPI =(searchText) =>{    
     const url = `https://api.github.com/search/users?q=${searchText}`;
     clearTimeout(this.timer); 
     this.timer = setTimeout(()=>fetch(url)
@@ -19,10 +18,8 @@ class App extends React.Component {
           }else{
             this.setState({users: []})
           }
-
         }
-      ), 400);
-      
+      ), 400);      
   }
   onChangeHandle=({target})=> {
       const searchText = target.value;
@@ -51,11 +48,11 @@ class App extends React.Component {
     }
     return (
       <div>
-        <form onSubmit={event => onSubmit(event)}>
+        <form onSubmit={onSubmit}>
           <input className="form-control form-control-lg" type="text" 
           id="searchText"
-            onChange={event => onChangeHandle(event)}
-            onKeyUp={event => onKeyUpHandle(event)}
+            onChange={onChangeHandle}
+            onKeyUp={onKeyUpHandle}
             value={searchText} 
             placeholder="Search by user name"/>          
         </form>
